@@ -1,6 +1,6 @@
 {
   "name": "@eyevinn/multiview-sync",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple library to play multiple videos in sync",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

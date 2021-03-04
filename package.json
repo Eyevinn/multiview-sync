@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "parcel demo/index.html",
+    "lint": "eslint ./src",
     "build": "rm -rf ./dist && parcel build index.ts && tsc",
     "prepare": "npm run build"
   },

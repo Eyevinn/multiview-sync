@@ -16,7 +16,7 @@ export enum HTMLVideoElementEvents {
   SEEKING = "seeking",
   STALLED = "stalled",
   WAITING = "waiting",
-};
+}
 
 export interface Slave {
   videoElement: HTMLVideoElement;

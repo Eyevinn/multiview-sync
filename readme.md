@@ -39,3 +39,5 @@ Array.from(minions).forEach((minion) => {
 });
 ```
 
+![Minions_characters](https://user-images.githubusercontent.com/624182/109943292-5328e780-7cd5-11eb-801d-0174aeeea879.png)
+

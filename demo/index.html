@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event filter</title>
+  <script src="demo.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <video id="master" src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" controls>
+    </video>
+    <video id="slave1" class="slave" src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" controls>
+    </video>
+    <video id="slave2" class="slave" src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" controls>
+    </video>
+    <video id="slave3" class="slave" src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" controls>
+    </video>
+  </div>
+  <style>
+    #wrapper {
+      width: 100%;
+      margin: 0 auto;
+
+      display: grid;
+      grid-auto-columns: auto;
+      grid-template-columns: repeat(2, auto);
+    }
+
+    video {
+      max-width: 100%;
+    }
+  </style>
+</body>
+
+</html>

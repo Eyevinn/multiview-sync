@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": [
+      "es6",
+      "dom",
+      "es2017"
+    ],
+    "target": "es5",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "emitDeclarationOnly": true
+  },
+  "exclude": [
+    "node_modules",
+    "demo",
+    "dist"
+  ]
+}

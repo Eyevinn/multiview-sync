@@ -1,0 +1,35 @@
+{
+  "name": "@eyevinn/multiview-sync",
+  "version": "1.0.0",
+  "description": "A simple library to play multiple videos in sync",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "start": "parcel demo/index.html",
+    "build": "rm -rf ./dist && parcel build index.ts && tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": "https://github.com/Eyevinn/multiview-sync",
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.1",
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "parcel-bundler": "1.12.3",
+    "prettier": "^2.1.2",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "semver": "^6.3.0"
+  }
+}

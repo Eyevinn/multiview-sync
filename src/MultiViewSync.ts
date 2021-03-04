@@ -3,21 +3,21 @@ import {
   DIFF_IN_FRONT,
   HTMLVideoElementEvents,
   PingEvent,
-  Slave,
+  Minion,
   SLOW_DOWN,
   SPEED_UP,
 } from "./utils/constants";
 
 export class MultiViewSync {
   private master: HTMLVideoElement;
-  private slaves: Slave[];
+  private minions: Minion[];
 
   private playListener: any;
   private pauseListener: any;
   private timeUpdateListener: any;
 
   constructor() {
-    this.slaves = [];
+    this.minions = [];
   }
 
   setMaster(videoElement: HTMLVideoElement): void {
@@ -52,28 +52,28 @@ export class MultiViewSync {
     );
   }
 
-  addSlave({ videoElement, identifier }: Slave): void {
-    if (this.slaves.find((slave) => slave.identifier === identifier)) {
-      console.warn(`Slave with identifier ${identifier} already exists.`);
+  addMinion({ videoElement, identifier }: Minion): void {
+    if (this.minions.find((minion) => minion.identifier === identifier)) {
+      console.warn(`Minion with identifier ${identifier} already exists.`);
       return;
     }
-    this.slaves.push({
+    this.minions.push({
       videoElement,
       ...(identifier && { identifier }),
     });
     console.log(
-      `%cAdded slave: %c${identifier}`,
+      `%cAdded minion: %c${identifier}`,
       "color:orange;",
       "color:green;"
     );
   }
 
-  removeSlave(identifier: string): boolean {
-    const slaveIndex = this.slaves.findIndex(
+  removeMinion(identifier: string): boolean {
+    const minionIndex = this.minions.findIndex(
       (s) => s.identifier === identifier
     );
-    if (slaveIndex === -1) return false;
-    this.slaves.splice(slaveIndex, 1);
+    if (minionIndex === -1) return false;
+    this.minions.splice(minionIndex, 1);
     return true;
   }
 
@@ -81,19 +81,19 @@ export class MultiViewSync {
     console.log(`Ping event: %c${event}`, "color:blue;");
     switch (event) {
       case HTMLVideoElementEvents.PLAY:
-        this.slaves.forEach((slave) => {
-          slave.videoElement.currentTime = time;
-          slave.videoElement.play();
+        this.minions.forEach((minion) => {
+          minion.videoElement.currentTime = time;
+          minion.videoElement.play();
         });
         break;
       case HTMLVideoElementEvents.PAUSE:
-        this.slaves.forEach((slave) => {
-          slave.videoElement.pause();
+        this.minions.forEach((minion) => {
+          minion.videoElement.pause();
         });
         break;
       case HTMLVideoElementEvents.TIMEUPDATE:
-        this.slaves.forEach((slave) => {
-          this.sync({ slave, time });
+        this.minions.forEach((minion) => {
+          this.sync({ minion: minion, time });
         });
         break;
       default:
@@ -101,23 +101,23 @@ export class MultiViewSync {
     }
   }
 
-  sync({ slave, time }: { slave: Slave; time: number }): void {
+  sync({ minion, time }: { minion: Minion; time: number }): void {
     const masterTime = time;
-    const slaveTime = slave.videoElement.currentTime;
-    if (slaveTime < masterTime && masterTime - slaveTime > DIFF_BEHIND) {
-      slave.videoElement.playbackRate = SPEED_UP;
+    const minionTime = minion.videoElement.currentTime;
+    if (minionTime < masterTime && masterTime - minionTime > DIFF_BEHIND) {
+      minion.videoElement.playbackRate = SPEED_UP;
     } else if (
-      slaveTime > masterTime &&
-      slaveTime - masterTime > DIFF_IN_FRONT
+      minionTime > masterTime &&
+      minionTime - masterTime > DIFF_IN_FRONT
     ) {
-      slave.videoElement.playbackRate = SLOW_DOWN;
+      minion.videoElement.playbackRate = SLOW_DOWN;
     } else {
-      slave.videoElement.playbackRate = 1.0;
+      minion.videoElement.playbackRate = 1.0;
     }
   }
 
   destroy() {
-    this.slaves = [];
+    this.minions = [];
     this.master.removeEventListener(
       HTMLVideoElementEvents.PLAY,
       this.playListener

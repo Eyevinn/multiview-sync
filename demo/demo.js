@@ -3,11 +3,11 @@ import { MultiViewSync } from "../index";
 document.addEventListener("DOMContentLoaded", () => {
   const multiViewSync = new MultiViewSync();
   multiViewSync.setMaster(document.querySelector("video#master"));
-  const slaves = document.querySelectorAll("video.slave");
-  Array.from(slaves).forEach((slave) => {
-    multiViewSync.addSlave({
-      videoElement: slave,
-      identifier: slave.id,
+  const minions = document.querySelectorAll("video.minion");
+  Array.from(minions).forEach((minion) => {
+    multiViewSync.addMinion({
+      videoElement: minion,
+      identifier: minion.id,
     });
   });
 });

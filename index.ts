@@ -1,1 +1,1 @@
-export { MultiViewSync } from "./src/MultiViewSync"
+export { MultiViewSync } from "./src/MultiViewSync";

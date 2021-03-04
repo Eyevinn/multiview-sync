@@ -18,7 +18,7 @@ export enum HTMLVideoElementEvents {
   WAITING = "waiting",
 }
 
-export interface Slave {
+export interface Minion {
   videoElement: HTMLVideoElement;
   identifier?: string;
 }

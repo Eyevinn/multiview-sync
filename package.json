@@ -10,10 +10,23 @@
     "build": "rm -rf ./dist && parcel build index.ts && tsc",
     "prepare": "npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "repository": "https://github.com/Eyevinn/multiview-sync",
+  "keywords": [
+    "watchparty",
+    "sync",
+    "videoplayer"
+  ],
+  "author": "Eyevinn Technology <work@eyevinn.se>",
+  "contributors": [
+    "Erik Hoffman <erik.hoffman@eyevinn.se> (Eyevinn Technology AB)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Eyevinn/multiview-sync/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eyevinn/multiview-sync.git"
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",

@@ -20,7 +20,7 @@ export class MultiViewSync {
     this.minions = [];
   }
 
-  setMaster(videoElement: HTMLVideoElement): void {
+  public setMaster(videoElement: HTMLVideoElement): void {
     this.master = videoElement;
     console.log("%cAdded master", "color:green;");
     this.master.addEventListener(
@@ -52,7 +52,7 @@ export class MultiViewSync {
     );
   }
 
-  addMinion({ videoElement, identifier }: Minion): void {
+  public addMinion({ videoElement, identifier }: Minion): void {
     if (this.minions.find((minion) => minion.identifier === identifier)) {
       console.warn(`Minion with identifier ${identifier} already exists.`);
       return;
@@ -68,7 +68,7 @@ export class MultiViewSync {
     );
   }
 
-  removeMinion(identifier: string): boolean {
+  public removeMinion(identifier: string): boolean {
     const minionIndex = this.minions.findIndex(
       (s) => s.identifier === identifier
     );
@@ -77,7 +77,7 @@ export class MultiViewSync {
     return true;
   }
 
-  ping({ event, time }: PingEvent): void {
+  private ping({ event, time }: PingEvent): void {
     console.log(`Ping event: %c${event}`, "color:blue;");
     switch (event) {
       case HTMLVideoElementEvents.PLAY:
@@ -101,7 +101,7 @@ export class MultiViewSync {
     }
   }
 
-  sync({ minion, time }: { minion: Minion; time: number }): void {
+  private sync({ minion, time }: { minion: Minion; time: number }): void {
     const masterTime = time;
     const minionTime = minion.videoElement.currentTime;
     if (minionTime < masterTime && masterTime - minionTime > DIFF_BEHIND) {
@@ -116,7 +116,7 @@ export class MultiViewSync {
     }
   }
 
-  destroy() {
+  public destroy() {
     this.minions = [];
     this.master.removeEventListener(
       HTMLVideoElementEvents.PLAY,
